@@ -454,44 +454,73 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 
   .hero-stage {
     grid-template-columns: 1fr;
-    padding-block: 5.75rem 2rem;
-    gap: 1.35rem;
+    width: 100%;
+    max-width: none;
+    padding: 4.85rem 0 1.75rem;
+    gap: 1.1rem;
   }
 
-  /* Image first on mobile so the hero never feels empty */
+  /* Full-bleed crystal panel — more premium, less "empty green" */
   .hero-crystal {
     order: -1;
-    justify-self: center;
-    width: min(100%, 100%);
-    max-width: 520px;
+    justify-self: stretch;
+    width: 100%;
+    max-width: none;
   }
 
   .hero-crystal-frame {
     aspect-ratio: 16 / 10;
-    clip-path: polygon(6% 0%, 100% 0%, 100% 88%, 94% 100%, 0% 100%, 0% 10%);
+    clip-path: polygon(0 0, 100% 0, 100% 92%, 96% 100%, 0 100%);
+    border-radius: 0;
+    box-shadow: none;
   }
 
   .hero-content::before {
-    left: 0;
+    display: none;
   }
 
   .hero-content {
-    padding-left: 1rem;
-    padding-bottom: 0.5rem;
+    width: min(100% - 2rem, var(--max));
+    margin-inline: auto;
+    padding: 0.15rem 0 0.35rem;
   }
 
   .hero h1 {
-    font-size: clamp(2.15rem, 9vw, 2.75rem);
-    margin-bottom: 0.65rem;
+    font-size: clamp(2.05rem, 8.2vw, 2.55rem);
+    margin-bottom: 0.55rem;
+    letter-spacing: -0.02em;
   }
 
   .hero-lead {
-    font-size: 1.02rem;
-    line-height: 1.5;
+    font-size: 0.98rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.86);
+    max-width: 22rem;
+  }
+
+  .hero .btn-group {
+    margin-top: 1.15rem;
+  }
+
+  .hero .btn-primary {
+    width: 100%;
   }
 
   .hero .btn-secondary {
     display: none;
+  }
+
+  .logo-text span {
+    display: none;
+  }
+
+  .logo-text strong {
+    font-size: 0.9rem;
+  }
+
+  .logo-mark {
+    width: 44px;
+    height: 44px;
   }
 }
 
@@ -943,6 +972,16 @@ textarea { min-height: 140px; resize: vertical; }
   right: 1rem;
   bottom: 1rem;
   z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.28s var(--ease), transform 0.28s var(--ease);
+}
+
+.mobile-cta.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 .mobile-cta .btn {

@@ -89,6 +89,23 @@
     });
   }
 
+  // Sticky mobile CTA only after hero leaves view (avoids duplicate button)
+  const mobileCta = document.querySelector(".mobile-cta");
+  const heroEl = document.querySelector("[data-hero]") || document.querySelector(".hero, .page-hero");
+  if (mobileCta) {
+    if (heroEl && "IntersectionObserver" in window) {
+      const ctaObserver = new IntersectionObserver(
+        ([entry]) => {
+          mobileCta.classList.toggle("is-visible", !entry.isIntersecting);
+        },
+        { threshold: 0.12 }
+      );
+      ctaObserver.observe(heroEl);
+    } else {
+      mobileCta.classList.add("is-visible");
+    }
+  }
+
   // Lead capture forms → mailto fallback (swap to HubSpot/Formspree later)
   document.querySelectorAll("[data-lead-form]").forEach((form) => {
     form.addEventListener("submit", (event) => {
