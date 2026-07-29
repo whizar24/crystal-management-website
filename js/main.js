@@ -53,6 +53,42 @@
     reveals.forEach((el) => el.classList.add("is-visible"));
   }
 
+  // Crystal hero — mouse parallax (distinctive depth cue)
+  const hero = document.querySelector("[data-hero]");
+  const crystal = document.querySelector(".hero-crystal");
+  const motionOk = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
+
+  if (hero && crystal && motionOk) {
+    let raf = 0;
+    let targetX = 0;
+    let targetY = 0;
+
+    const render = () => {
+      crystal.style.setProperty("--hx", `${targetX}px`);
+      crystal.style.setProperty("--hy", `${targetY}px`);
+      raf = 0;
+    };
+
+    hero.addEventListener(
+      "pointermove",
+      (event) => {
+        const rect = hero.getBoundingClientRect();
+        const px = (event.clientX - rect.left) / rect.width - 0.5;
+        const py = (event.clientY - rect.top) / rect.height - 0.5;
+        targetX = px * -18;
+        targetY = py * -12;
+        if (!raf) raf = requestAnimationFrame(render);
+      },
+      { passive: true }
+    );
+
+    hero.addEventListener("pointerleave", () => {
+      targetX = 0;
+      targetY = 0;
+      if (!raf) raf = requestAnimationFrame(render);
+    });
+  }
+
   // Lead capture forms → mailto fallback (swap to HubSpot/Formspree later)
   document.querySelectorAll("[data-lead-form]").forEach((form) => {
     form.addEventListener("submit", (event) => {
