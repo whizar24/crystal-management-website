@@ -66,7 +66,7 @@
     <main>
       <section class="hero" data-hero>
         <div class="hero-ambient" aria-hidden="true">
-          <img src="assets/images/cms-hero.jpg?v=1" alt="" />
+          <img data-hero-image alt="" />
         </div>
         <div class="container hero-stage">
           <div class="hero-content">
@@ -83,7 +83,7 @@
           </div>
           <div class="hero-crystal" aria-hidden="true">
             <div class="hero-crystal-frame">
-              <img class="hero-crystal-img" src="assets/images/cms-hero.jpg?v=1" alt="" />
+              <img class="hero-crystal-img" data-hero-image alt="" />
               <span class="hero-facet hero-facet-a"></span>
               <span class="hero-facet hero-facet-b"></span>
               <span class="hero-facet hero-facet-c"></span>
@@ -91,6 +91,46 @@
             </div>
           </div>
         </div>
+        <script>
+          (function () {
+            var images = [
+              "assets/images/cms-hero-1.jpg",
+              "assets/images/cms-hero-2.jpg",
+              "assets/images/cms-hero-3.jpg",
+              "assets/images/cms-hero-4.jpg"
+            ];
+            var queueKey = "cms-hero-queue-v1";
+            var lastKey = "cms-hero-last-v1";
+            var queue = [];
+            try {
+              queue = JSON.parse(localStorage.getItem(queueKey) || "[]");
+            } catch (e) {
+              queue = [];
+            }
+            queue = queue.filter(function (src) {
+              return images.indexOf(src) !== -1;
+            });
+            if (!queue.length) {
+              queue = images.slice();
+              for (var i = queue.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var t = queue[i];
+                queue[i] = queue[j];
+                queue[j] = t;
+              }
+              var last = localStorage.getItem(lastKey);
+              if (last && queue[0] === last && queue.length > 1) {
+                queue.push(queue.shift());
+              }
+            }
+            var next = queue.shift();
+            localStorage.setItem(queueKey, JSON.stringify(queue));
+            localStorage.setItem(lastKey, next);
+            document.querySelectorAll("[data-hero-image]").forEach(function (img) {
+              img.src = next;
+            });
+          })();
+        </script>
       </section>
 
       <section class="section">
