@@ -15,8 +15,8 @@
   --radius: 18px;
   --radius-sm: 10px;
   --max: 1120px;
-  --font-display: "Fraunces", Georgia, serif;
-  --font-body: "Manrope", system-ui, sans-serif;
+  --font-display: "Newsreader", "Times New Roman", serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -53,9 +53,9 @@ a {
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
-  font-weight: 560;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.018em;
   margin: 0 0 0.75rem;
   color: var(--ink);
 }
@@ -120,9 +120,10 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   color: var(--white);
   display: grid;
   place-items: center;
-  font-family: var(--font-display);
-  font-weight: 650;
-  font-size: 0.85rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
   flex-shrink: 0;
 }
 
@@ -452,9 +453,10 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   content: counter(step, decimal-leading-zero);
   display: block;
   font-family: var(--font-display);
-  font-size: 2.4rem;
+  font-weight: 600;
+  font-size: 2.35rem;
   color: var(--forest);
-  opacity: 0.35;
+  opacity: 0.4;
   line-height: 1;
   margin-bottom: 0.85rem;
 }
