@@ -114,13 +114,13 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 }
 
 .logo-mark {
-  width: 52px;
-  height: 52px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
   flex-shrink: 0;
-  background: var(--white);
-  box-shadow: 0 0 0 1px rgba(30, 77, 58, 0.08);
+  background: #f3f0ea;
+  box-shadow: 0 0 0 1px rgba(30, 77, 58, 0.12);
 }
 
 .logo-text strong {
