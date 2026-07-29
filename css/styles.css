@@ -15,8 +15,8 @@
   --radius: 18px;
   --radius-sm: 10px;
   --max: 1120px;
-  --font-display: "Newsreader", "Times New Roman", serif;
-  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-body: "Figtree", system-ui, sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -53,16 +53,16 @@ a {
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
-  font-weight: 500;
-  line-height: 1.18;
-  letter-spacing: -0.018em;
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
   margin: 0 0 0.75rem;
   color: var(--ink);
 }
 
-h1 { font-size: clamp(2.4rem, 5vw, 3.75rem); }
-h2 { font-size: clamp(1.85rem, 3.5vw, 2.65rem); }
-h3 { font-size: clamp(1.25rem, 2vw, 1.55rem); }
+h1 { font-size: clamp(2.75rem, 5.4vw, 4.15rem); font-weight: 600; }
+h2 { font-size: clamp(2.1rem, 3.8vw, 3.05rem); }
+h3 { font-size: clamp(1.35rem, 2.1vw, 1.7rem); font-weight: 600; }
 
 p { margin: 0 0 1rem; color: var(--ink-soft); }
 
@@ -73,9 +73,10 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 
 .eyebrow {
   display: inline-block;
-  font-size: 0.78rem;
+  font-family: var(--font-body);
+  font-size: 0.74rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--forest);
   margin-bottom: 0.85rem;
@@ -404,8 +405,10 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 
 .service-card .tagline {
   color: var(--accent);
-  font-weight: 700;
-  font-size: 0.92rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.15rem;
   margin-bottom: 0.65rem;
 }
 
@@ -512,8 +515,10 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 .quote-card blockquote {
   margin: 0 0 1.25rem;
   font-family: var(--font-display);
-  font-size: 1.15rem;
-  line-height: 1.45;
+  font-size: 1.35rem;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.4;
   color: var(--ink);
 }
 
@@ -604,9 +609,11 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 
 .feature-num {
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  font-style: italic;
   color: var(--forest);
-  opacity: 0.45;
+  opacity: 0.5;
   line-height: 1;
 }
 
