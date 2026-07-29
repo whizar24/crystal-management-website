@@ -456,7 +456,7 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
     grid-template-columns: 1fr;
     width: 100%;
     max-width: none;
-    padding: 4.85rem 0 1.75rem;
+    padding: 0 0 1.5rem;
     gap: 1.1rem;
   }
 
