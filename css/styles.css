@@ -114,18 +114,13 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 }
 
 .logo-mark {
-  width: 44px;
-  height: 44px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: var(--forest);
-  color: var(--white);
-  display: grid;
-  place-items: center;
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
+  object-fit: cover;
   flex-shrink: 0;
+  background: var(--white);
+  box-shadow: 0 0 0 1px rgba(30, 77, 58, 0.08);
 }
 
 .logo-text strong {
