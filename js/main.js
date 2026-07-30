@@ -53,19 +53,19 @@
     reveals.forEach((el) => el.classList.add("is-visible"));
   }
 
-  // Crystal hero — mouse parallax (distinctive depth cue)
+  // Cinematic hero — subtle parallax on background
   const hero = document.querySelector("[data-hero]");
-  const crystal = document.querySelector(".hero-visual");
+  const heroBg = document.querySelector(".hero-bg");
   const motionOk = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
 
-  if (hero && crystal && motionOk) {
+  if (hero && heroBg && motionOk) {
     let raf = 0;
     let targetX = 0;
     let targetY = 0;
 
     const render = () => {
-      crystal.style.setProperty("--hx", `${targetX}px`);
-      crystal.style.setProperty("--hy", `${targetY}px`);
+      heroBg.style.setProperty("--hx", `${targetX}px`);
+      heroBg.style.setProperty("--hy", `${targetY}px`);
       raf = 0;
     };
 
@@ -75,8 +75,8 @@
         const rect = hero.getBoundingClientRect();
         const px = (event.clientX - rect.left) / rect.width - 0.5;
         const py = (event.clientY - rect.top) / rect.height - 0.5;
-        targetX = px * -18;
-        targetY = py * -12;
+        targetX = px * -14;
+        targetY = py * -10;
         if (!raf) raf = requestAnimationFrame(render);
       },
       { passive: true }
