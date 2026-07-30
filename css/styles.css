@@ -1119,3 +1119,84 @@ textarea { min-height: 140px; resize: vertical; }
     width: 100%;
   }
 }
+
+/* Soft link / button hover indicator (desktop fine pointer) */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transform: translate3d(-100px, -100px, 0) scale(0.55);
+  background: radial-gradient(
+    circle,
+    rgba(30, 77, 58, 0.22) 0%,
+    rgba(184, 90, 61, 0.12) 42%,
+    transparent 72%
+  );
+  box-shadow:
+    0 0 0 1px rgba(30, 77, 58, 0.12),
+    0 8px 24px rgba(20, 53, 40, 0.08);
+  mix-blend-mode: multiply;
+  transition:
+    opacity 0.25s var(--ease),
+    transform 0.18s var(--ease),
+    width 0.28s var(--ease),
+    height 0.28s var(--ease),
+    margin 0.28s var(--ease),
+    background 0.28s var(--ease);
+  will-change: transform, opacity;
+}
+
+.cursor-glow.is-on {
+  opacity: 1;
+}
+
+.cursor-glow.is-hot {
+  width: 52px;
+  height: 52px;
+  margin: -26px 0 0 -26px;
+  background: radial-gradient(
+    circle,
+    rgba(30, 77, 58, 0.28) 0%,
+    rgba(184, 90, 61, 0.14) 45%,
+    transparent 74%
+  );
+  box-shadow:
+    0 0 0 1.5px rgba(30, 77, 58, 0.18),
+    0 12px 30px rgba(20, 53, 40, 0.12);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a,
+  button,
+  .btn,
+  summary,
+  [role="button"],
+  input[type="submit"],
+  input[type="button"],
+  label[for] {
+    transition:
+      color 0.2s var(--ease),
+      background 0.2s var(--ease),
+      border-color 0.2s var(--ease),
+      box-shadow 0.2s var(--ease),
+      transform 0.2s var(--ease),
+      opacity 0.2s var(--ease);
+  }
+
+  a:not(.btn):hover {
+    color: var(--forest);
+  }
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor-glow {
+    display: none !important;
+  }
+}

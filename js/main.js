@@ -106,6 +106,64 @@
     }
   }
 
+  // Soft cursor glow over links / buttons (desktop only)
+  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const allowMotion = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
+
+  if (finePointer && allowMotion) {
+    const glow = document.createElement("div");
+    glow.className = "cursor-glow";
+    glow.setAttribute("aria-hidden", "true");
+    document.body.appendChild(glow);
+
+    let glowRaf = 0;
+    let gx = -100;
+    let gy = -100;
+    let hot = false;
+
+    const interactiveSelector =
+      'a[href], button:not([disabled]), .btn, summary, [role="button"], input[type="submit"], input[type="button"], label[for]';
+
+    const paintGlow = () => {
+      glow.style.transform = `translate3d(${gx}px, ${gy}px, 0)`;
+      glowRaf = 0;
+    };
+
+    const setHot = (next) => {
+      if (hot === next) return;
+      hot = next;
+      glow.classList.toggle("is-hot", hot);
+    };
+
+    window.addEventListener(
+      "pointermove",
+      (event) => {
+        if (event.pointerType && event.pointerType !== "mouse") return;
+        gx = event.clientX;
+        gy = event.clientY;
+        glow.classList.add("is-on");
+        if (!glowRaf) glowRaf = requestAnimationFrame(paintGlow);
+
+        const target = event.target;
+        const hit =
+          target instanceof Element &&
+          Boolean(target.closest(interactiveSelector));
+        setHot(hit);
+      },
+      { passive: true }
+    );
+
+    document.documentElement.addEventListener("mouseleave", () => {
+      glow.classList.remove("is-on", "is-hot");
+      hot = false;
+    });
+
+    window.addEventListener("blur", () => {
+      glow.classList.remove("is-on", "is-hot");
+      hot = false;
+    });
+  }
+
   // Lead capture forms → mailto fallback (swap to HubSpot/Formspree later)
   document.querySelectorAll("[data-lead-form]").forEach((form) => {
     form.addEventListener("submit", (event) => {
