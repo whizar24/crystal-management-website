@@ -55,7 +55,7 @@
 
   // Crystal hero — mouse parallax (distinctive depth cue)
   const hero = document.querySelector("[data-hero]");
-  const crystal = document.querySelector(".hero-crystal");
+  const crystal = document.querySelector(".hero-visual");
   const motionOk = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
 
   if (hero && crystal && motionOk) {
