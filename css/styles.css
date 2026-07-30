@@ -246,13 +246,16 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 /* Hero — seamless split (light, soft, premium) */
 .hero {
   position: relative;
-  min-height: min(88vh, 760px);
+  /* Fill first screen exactly — no next-section spill */
+  min-height: calc(100svh - 76px);
+  height: calc(100svh - 76px);
+  max-height: calc(100svh - 76px);
   display: grid;
   align-items: center;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 55% 70% at 88% 40%, rgba(30, 77, 58, 0.14), transparent 70%),
-    radial-gradient(ellipse 40% 50% at 8% 80%, rgba(184, 90, 61, 0.06), transparent 65%),
+    radial-gradient(ellipse 55% 70% at 88% 42%, rgba(30, 77, 58, 0.13), transparent 70%),
+    radial-gradient(ellipse 40% 50% at 10% 78%, rgba(184, 90, 61, 0.05), transparent 65%),
     linear-gradient(180deg, #fbfaf7 0%, var(--bg) 100%);
   isolation: isolate;
 }
@@ -261,16 +264,18 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-  gap: clamp(1.75rem, 4vw, 3.75rem);
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.1fr);
+  gap: clamp(1.5rem, 3.5vw, 3.25rem);
   align-items: center;
-  padding-block: 3.5rem 4rem;
+  align-content: center;
+  height: 100%;
+  padding-block: clamp(1.25rem, 3vh, 2.5rem);
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 34rem;
+  max-width: 36rem;
   padding: 0;
 }
 
@@ -278,27 +283,28 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   color: var(--ink);
   margin-bottom: 0.85rem;
   text-wrap: balance;
+  font-size: clamp(2.6rem, 5vw, 3.85rem);
 }
 
 .hero-lead {
   color: var(--ink-soft);
   font-family: var(--font-display);
-  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
   font-style: italic;
   font-weight: 500;
-  max-width: 26rem;
+  max-width: 28rem;
   margin: 0;
   line-height: 1.45;
 }
 
 .hero .btn-group {
-  margin-top: 1.5rem;
+  margin-top: 1.65rem;
 }
 
 .hero-visual {
   position: relative;
   justify-self: end;
-  width: min(100%, 560px);
+  width: min(100%, 640px);
   transform: translate3d(var(--hx, 0), var(--hy, 0), 0);
   transition: transform 0.45s var(--ease);
   will-change: transform;
@@ -306,9 +312,9 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 
 .hero-visual-glow {
   position: absolute;
-  inset: 8% 4% 0;
-  background: radial-gradient(circle at 50% 50%, rgba(30, 77, 58, 0.35), transparent 68%);
-  filter: blur(28px);
+  inset: 6% 2% -2%;
+  background: radial-gradient(circle at 50% 55%, rgba(30, 77, 58, 0.38), transparent 68%);
+  filter: blur(32px);
   z-index: 0;
   pointer-events: none;
 }
@@ -316,12 +322,15 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 .hero-visual-frame {
   position: relative;
   z-index: 1;
-  aspect-ratio: 5 / 4;
+  /* Fill more of the hero height so it feels complete */
+  aspect-ratio: auto;
+  height: min(62vh, 520px);
+  width: 100%;
   border-radius: 28px;
   overflow: hidden;
   background: var(--forest-soft);
   box-shadow:
-    0 22px 60px rgba(20, 53, 40, 0.16),
+    0 28px 70px rgba(20, 53, 40, 0.18),
     0 2px 0 rgba(255, 255, 255, 0.65) inset;
 }
 
@@ -377,13 +386,18 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 
 @media (max-width: 960px) {
   .hero {
-    min-height: auto;
+    height: auto;
+    max-height: none;
+    min-height: calc(100svh - 64px);
   }
 
   .hero-stage {
     grid-template-columns: 1fr;
-    padding: 1.25rem 0 2rem;
-    gap: 1.35rem;
+    height: auto;
+    min-height: calc(100svh - 64px);
+    padding: 1rem 0 1.75rem;
+    gap: 1.25rem;
+    align-content: start;
   }
 
   .hero-visual {
@@ -393,18 +407,20 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   }
 
   .hero-visual-frame {
-    aspect-ratio: 16 / 10;
+    height: clamp(220px, 38vh, 320px);
+    aspect-ratio: auto;
     border-radius: 22px;
   }
 
   .hero-visual-glow {
-    inset: 12% 8% -2%;
+    inset: 10% 6% -2%;
     filter: blur(22px);
   }
 
   .hero-content {
     max-width: none;
-    padding: 0 0.15rem;
+    padding: 0.25rem 0.15rem 0;
+    margin-top: auto;
   }
 
   .hero h1 {
@@ -413,12 +429,12 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   }
 
   .hero-lead {
-    font-size: 1.1rem;
+    font-size: 1.12rem;
     max-width: 22rem;
   }
 
   .hero .btn-group {
-    margin-top: 1.2rem;
+    margin-top: 1.25rem;
   }
 
   .hero .btn-primary {
