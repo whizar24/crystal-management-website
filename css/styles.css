@@ -1,4 +1,4 @@
-/* Crystal Management Services — design system */
+/* Crystal Management Consulting — design system */
 :root {
   --forest: #1e4d3a;
   --forest-deep: #143528;
@@ -569,6 +569,21 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 
 .section-head.center {
   text-align: center;
+  margin-inline: auto;
+}
+
+.section-head-wide {
+  max-width: 52rem;
+}
+
+.section-caption {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.65rem, 3.2vw, 2.35rem);
+  line-height: 1.28;
+  text-wrap: balance;
+  max-width: 40rem;
   margin-inline: auto;
 }
 

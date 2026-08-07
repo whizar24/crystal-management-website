@@ -1,4 +1,4 @@
-/* Crystal Management Services — site interactions */
+/* Crystal Management Consulting — site interactions */
 
 (function () {
   const header = document.querySelector(".site-header");

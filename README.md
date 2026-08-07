@@ -1,6 +1,6 @@
-# Crystal Management Services — Website
+# Crystal Management Consulting — Website
 
-Professional multi-page website for Crystal Management Services (care business consultancy & training).
+Professional multi-page website for Crystal Management Consulting (care business consultancy & training).
 
 ## Pages
 - `index.html` — Home
