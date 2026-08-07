@@ -154,7 +154,6 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   transition: color 0.2s;
 }
 
-.nav-links a:hover,
 .nav-links a.is-active {
   color: var(--forest);
 }
@@ -196,8 +195,7 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   transition: transform 0.2s var(--ease), background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 
-.btn:hover { transform: translateY(-1px); }
-.btn:active { transform: translateY(0); }
+.btn:active { opacity: 0.9; }
 
 .btn-primary {
   background: var(--accent);
@@ -206,7 +204,7 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 }
 
 .btn-primary:hover {
-  background: var(--accent-hover);
+  background: var(--accent);
   color: var(--white);
 }
 
@@ -217,8 +215,8 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 }
 
 .btn-secondary:hover {
-  background: var(--forest);
-  color: var(--white);
+  background: transparent;
+  color: var(--forest);
 }
 
 .btn-light {
@@ -227,7 +225,7 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 }
 
 .btn-light:hover {
-  background: var(--forest-soft);
+  background: var(--white);
   color: var(--forest-deep);
 }
 
@@ -350,7 +348,7 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   font-family: var(--font-body);
   font-size: clamp(1.05rem, 1.7vw, 1.2rem);
   font-style: normal;
-  font-weight: 450;
+  font-weight: 700;
   max-width: 32rem;
   margin: 0;
   line-height: 1.55;
@@ -367,7 +365,7 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 }
 
 .btn-hero-primary:hover {
-  background: var(--accent-hover);
+  background: var(--accent);
   color: var(--white);
 }
 
@@ -379,9 +377,9 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 }
 
 .btn-hero-ghost:hover {
-  background: var(--forest);
-  color: var(--white);
-  border-color: var(--forest);
+  background: rgba(251, 250, 247, 0.55);
+  color: var(--forest);
+  border-color: rgba(30, 77, 58, 0.35);
 }
 
 .hero-proof {
@@ -574,6 +572,33 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   margin-inline: auto;
 }
 
+.section-head > p,
+.page-hero .container > p:not(.eyebrow),
+.about-strip > div > h2 + p,
+.cta-band .container > p:not(.cta-meta) {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.cta-band .container > p:not(.cta-meta) {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.why-heading {
+  max-width: 22rem;
+  margin-inline: auto;
+  line-height: 1.08;
+}
+
+.why-heading em {
+  display: block;
+  margin-top: 0.2rem;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--accent);
+  font-size: clamp(1.85rem, 3.4vw, 2.55rem);
+}
+
 .section-muted {
   background: var(--bg-warm);
 }
@@ -658,7 +683,7 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   color: var(--accent);
   font-family: var(--font-display);
   font-style: italic;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.15rem;
   margin-bottom: 0.65rem;
 }
@@ -821,6 +846,7 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 .cta-meta {
   margin-top: 1.25rem;
   font-size: 0.95rem;
+  font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
 }
 
@@ -840,6 +866,10 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 .page-hero p {
   max-width: 40rem;
   font-size: 1.08rem;
+}
+
+.page-hero .container > p:not(.eyebrow) {
+  color: var(--ink);
 }
 
 /* Feature blocks */
@@ -989,6 +1019,37 @@ textarea { min-height: 140px; resize: vertical; }
 
 .footer-links li { margin-bottom: 0.45rem; }
 
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.15rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #fbfaf7;
+  color: var(--forest-deep);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.2s;
+}
+
+.social-link:hover {
+  background: #fbfaf7;
+  color: var(--forest-deep);
+}
+
+.social-link svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   padding-top: 1.25rem;
@@ -1120,83 +1181,21 @@ textarea { min-height: 140px; resize: vertical; }
   }
 }
 
-/* Soft link / button hover indicator (desktop fine pointer) */
-.cursor-glow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 28px;
-  height: 28px;
-  margin: -14px 0 0 -14px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0;
-  transform: translate3d(-100px, -100px, 0) scale(0.55);
-  background: radial-gradient(
-    circle,
-    rgba(30, 77, 58, 0.22) 0%,
-    rgba(184, 90, 61, 0.12) 42%,
-    transparent 72%
-  );
-  box-shadow:
-    0 0 0 1px rgba(30, 77, 58, 0.12),
-    0 8px 24px rgba(20, 53, 40, 0.08);
-  mix-blend-mode: multiply;
-  transition:
-    opacity 0.25s var(--ease),
-    transform 0.18s var(--ease),
-    width 0.28s var(--ease),
-    height 0.28s var(--ease),
-    margin 0.28s var(--ease),
-    background 0.28s var(--ease);
-  will-change: transform, opacity;
-}
-
-.cursor-glow.is-on {
-  opacity: 1;
-}
-
-.cursor-glow.is-hot {
-  width: 52px;
-  height: 52px;
-  margin: -26px 0 0 -26px;
-  background: radial-gradient(
-    circle,
-    rgba(30, 77, 58, 0.28) 0%,
-    rgba(184, 90, 61, 0.14) 45%,
-    transparent 74%
-  );
-  box-shadow:
-    0 0 0 1.5px rgba(30, 77, 58, 0.18),
-    0 12px 30px rgba(20, 53, 40, 0.12);
-}
-
+/* Links & buttons: slightly lighter on hover */
 @media (hover: hover) and (pointer: fine) {
-  a,
-  button,
+  a[href],
+  button:not([disabled]),
   .btn,
-  summary,
-  [role="button"],
   input[type="submit"],
-  input[type="button"],
-  label[for] {
-    transition:
-      color 0.2s var(--ease),
-      background 0.2s var(--ease),
-      border-color 0.2s var(--ease),
-      box-shadow 0.2s var(--ease),
-      transform 0.2s var(--ease),
-      opacity 0.2s var(--ease);
+  input[type="button"] {
+    transition: opacity 0.2s var(--ease), color 0.2s var(--ease), background 0.2s var(--ease), border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
   }
 
-  a:not(.btn):hover {
-    color: var(--forest);
-  }
-}
-
-@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
-  .cursor-glow {
-    display: none !important;
+  a[href]:hover,
+  button:not([disabled]):hover,
+  .btn:hover,
+  input[type="submit"]:hover,
+  input[type="button"]:hover {
+    opacity: 0.72;
   }
 }
