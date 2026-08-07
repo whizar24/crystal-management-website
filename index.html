@@ -66,7 +66,30 @@
     <main>
       <section class="hero" data-hero>
         <div class="hero-bg" aria-hidden="true">
-          <img class="hero-bg-img" data-hero-image alt="" />
+          <picture>
+            <source
+              data-hero-mobile
+              type="image/webp"
+              media="(max-width: 960px)"
+              srcset="assets/images/cms-hero-1-mobile.webp"
+            />
+            <source
+              data-hero-desktop
+              type="image/webp"
+              srcset="assets/images/cms-hero-1.webp"
+            />
+            <img
+              class="hero-bg-img"
+              data-hero-image
+              src="assets/images/cms-hero-1.jpg"
+              alt=""
+              width="1400"
+              height="933"
+              decoding="async"
+              fetchpriority="high"
+              style="--hero-pos: 58% 36%; --hero-pos-mobile: 50% 34%"
+            />
+          </picture>
           <div class="hero-bg-overlay"></div>
         </div>
 
@@ -121,24 +144,53 @@
         <script>
           (function () {
             var images = [
-              "assets/images/cms-hero-1.jpg",
-              "assets/images/cms-hero-2.jpg",
-              "assets/images/cms-hero-3.jpg",
-              "assets/images/cms-hero-4.jpg"
+              {
+                id: "1",
+                jpg: "assets/images/cms-hero-1.jpg",
+                webp: "assets/images/cms-hero-1.webp",
+                mobile: "assets/images/cms-hero-1-mobile.webp",
+                pos: "58% 36%",
+                posMobile: "50% 34%"
+              },
+              {
+                id: "2",
+                jpg: "assets/images/cms-hero-2.jpg",
+                webp: "assets/images/cms-hero-2.webp",
+                mobile: "assets/images/cms-hero-2-mobile.webp",
+                pos: "50% 32%",
+                posMobile: "50% 28%"
+              },
+              {
+                id: "3",
+                jpg: "assets/images/cms-hero-3.jpg",
+                webp: "assets/images/cms-hero-3.webp",
+                mobile: "assets/images/cms-hero-3-mobile.webp",
+                pos: "50% 34%",
+                posMobile: "50% 30%"
+              },
+              {
+                id: "4",
+                jpg: "assets/images/cms-hero-4.jpg",
+                webp: "assets/images/cms-hero-4.webp",
+                mobile: "assets/images/cms-hero-4-mobile.webp",
+                pos: "54% 38%",
+                posMobile: "50% 36%"
+              }
             ];
-            var queueKey = "cms-hero-queue-v1";
-            var lastKey = "cms-hero-last-v1";
+            var queueKey = "cms-hero-queue-v2";
+            var lastKey = "cms-hero-last-v2";
+            var ids = images.map(function (item) { return item.id; });
             var queue = [];
             try {
               queue = JSON.parse(localStorage.getItem(queueKey) || "[]");
             } catch (e) {
               queue = [];
             }
-            queue = queue.filter(function (src) {
-              return images.indexOf(src) !== -1;
+            queue = queue.filter(function (id) {
+              return ids.indexOf(id) !== -1;
             });
             if (!queue.length) {
-              queue = images.slice();
+              queue = ids.slice();
               for (var i = queue.length - 1; i > 0; i--) {
                 var j = Math.floor(Math.random() * (i + 1));
                 var t = queue[i];
@@ -150,12 +202,21 @@
                 queue.push(queue.shift());
               }
             }
-            var next = queue.shift();
+            var nextId = queue.shift();
             localStorage.setItem(queueKey, JSON.stringify(queue));
-            localStorage.setItem(lastKey, next);
-            document.querySelectorAll("[data-hero-image]").forEach(function (img) {
-              img.src = next;
-            });
+            localStorage.setItem(lastKey, nextId);
+            var next = images.filter(function (item) { return item.id === nextId; })[0] || images[0];
+
+            var mobileSource = document.querySelector("[data-hero-mobile]");
+            var desktopSource = document.querySelector("[data-hero-desktop]");
+            var img = document.querySelector("[data-hero-image]");
+            if (mobileSource) mobileSource.srcset = next.mobile;
+            if (desktopSource) desktopSource.srcset = next.webp;
+            if (img) {
+              img.src = next.jpg;
+              img.style.setProperty("--hero-pos", next.pos);
+              img.style.setProperty("--hero-pos-mobile", next.posMobile);
+            }
           })();
         </script>
       </section>
