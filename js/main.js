@@ -75,8 +75,8 @@
         const rect = hero.getBoundingClientRect();
         const px = (event.clientX - rect.left) / rect.width - 0.5;
         const py = (event.clientY - rect.top) / rect.height - 0.5;
-        targetX = px * -14;
-        targetY = py * -10;
+        targetX = px * -10;
+        targetY = 0; // keep Y locked — vertical shift caused a flashing seam under the header
         if (!raf) raf = requestAnimationFrame(render);
       },
       { passive: true }

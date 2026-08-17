@@ -258,7 +258,8 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 
 .hero-bg {
   position: absolute;
-  inset: 0;
+  /* Bleed past edges so mouse parallax never flashes a gap under the header */
+  inset: -32px;
   z-index: 0;
   overflow: hidden;
   transform: translate3d(var(--hx, 0), var(--hy, 0), 0);
@@ -1211,50 +1212,65 @@ textarea { min-height: 140px; resize: vertical; }
 /* Workshop floating announcement */
 .workshop-float {
   position: fixed;
-  right: 1.35rem;
-  bottom: 1.35rem;
+  right: 1.25rem;
+  bottom: 1.25rem;
   z-index: 95;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.85rem;
-  width: min(100% - 2rem, 360px);
-  padding: 1rem 1.1rem 1.05rem;
-  border-radius: 18px;
-  background: #fbfaf7;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.95rem;
+  width: min(100% - 1.75rem, 400px);
+  padding: 1.15rem 1.2rem 1.2rem 1.3rem;
+  border-radius: 20px;
+  background:
+    linear-gradient(165deg, #fffdf9 0%, #f7f3eb 100%);
   color: var(--ink);
-  border: 1px solid rgba(30, 77, 58, 0.14);
+  border: 1px solid rgba(184, 90, 61, 0.28);
   box-shadow:
-    0 18px 50px rgba(20, 53, 40, 0.18),
-    0 2px 0 rgba(255, 255, 255, 0.8) inset;
+    0 0 0 4px rgba(184, 90, 61, 0.1),
+    0 22px 55px rgba(20, 53, 40, 0.22);
   text-decoration: none;
   transform: translateY(0);
   animation: workshopFloatIn 0.55s var(--ease) both;
 }
 
+.workshop-float::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+  border-radius: 20px 0 0 20px;
+  background: linear-gradient(180deg, var(--accent), #d4785a);
+  pointer-events: none;
+}
+
 .workshop-float:hover {
   opacity: 1;
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  border-color: rgba(184, 90, 61, 0.45);
   box-shadow:
-    0 22px 56px rgba(20, 53, 40, 0.22),
-    0 2px 0 rgba(255, 255, 255, 0.8) inset;
+    0 0 0 5px rgba(184, 90, 61, 0.14),
+    0 28px 60px rgba(20, 53, 40, 0.26);
 }
 
 .workshop-float-badge {
+  position: relative;
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 2.6rem;
-  padding: 0.28rem 0.5rem;
-  border-radius: 999px;
+  align-self: start;
+  min-width: 3.15rem;
+  height: 3.15rem;
+  padding: 0.35rem;
+  border-radius: 50%;
   background: var(--accent);
   color: var(--white);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  box-shadow: 0 8px 18px rgba(184, 90, 61, 0.35);
-  animation: workshopBadgePulse 2.4s ease-in-out infinite;
+  box-shadow: 0 10px 22px rgba(184, 90, 61, 0.4);
+  animation: workshopBadgePulse 2.2s ease-in-out infinite;
 }
 
 .workshop-float-body {
@@ -1262,27 +1278,50 @@ textarea { min-height: 140px; resize: vertical; }
   flex-direction: column;
   gap: 0.28rem;
   min-width: 0;
+  padding-right: 0.15rem;
+}
+
+.workshop-float-kicker {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
 .workshop-float-body strong {
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.35rem;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.15;
   color: var(--ink);
 }
 
 .workshop-float-meta {
-  font-size: 0.84rem;
+  font-size: 0.9rem;
   color: var(--ink-soft);
-  line-height: 1.35;
+  line-height: 1.4;
+  font-weight: 560;
 }
 
 .workshop-float-cta {
-  margin-top: 0.2rem;
-  font-size: 0.88rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: start;
+  margin-top: 0.55rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: var(--forest);
+  color: #fbfaf7;
+  font-size: 0.86rem;
   font-weight: 700;
-  color: var(--accent);
+  box-shadow: 0 8px 18px rgba(20, 53, 40, 0.18);
+}
+
+.workshop-float:hover .workshop-float-cta {
+  background: var(--forest-deep);
 }
 
 @keyframes workshopFloatIn {
@@ -1297,8 +1336,8 @@ textarea { min-height: 140px; resize: vertical; }
 }
 
 @keyframes workshopBadgePulse {
-  0%, 100% { transform: scale(1); box-shadow: 0 8px 18px rgba(184, 90, 61, 0.35); }
-  50% { transform: scale(1.05); box-shadow: 0 10px 22px rgba(184, 90, 61, 0.45); }
+  0%, 100% { transform: scale(1); box-shadow: 0 10px 22px rgba(184, 90, 61, 0.4); }
+  50% { transform: scale(1.07); box-shadow: 0 12px 26px rgba(184, 90, 61, 0.55); }
 }
 
 @media (prefers-reduced-motion: reduce) {
