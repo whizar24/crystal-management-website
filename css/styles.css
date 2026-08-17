@@ -1208,6 +1208,244 @@ textarea { min-height: 140px; resize: vertical; }
   }
 }
 
+/* Workshop promo banner (homepage) */
+.workshop-banner {
+  background:
+    linear-gradient(105deg, rgba(20, 53, 40, 0.96), rgba(30, 77, 58, 0.9)),
+    var(--forest-deep);
+  color: #f7f4ef;
+  padding: 1.35rem 0;
+  border-block: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.workshop-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem 2rem;
+  flex-wrap: wrap;
+}
+
+.workshop-banner-copy {
+  flex: 1 1 18rem;
+  min-width: 0;
+}
+
+.workshop-banner-eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #e8c4b4;
+}
+
+.workshop-banner h2 {
+  margin: 0 0 0.4rem;
+  color: #fbfaf7;
+  font-size: clamp(1.55rem, 2.8vw, 2rem);
+}
+
+.workshop-banner p {
+  margin: 0;
+  color: rgba(247, 244, 239, 0.86);
+  font-size: 0.98rem;
+  max-width: 40rem;
+}
+
+.workshop-banner .btn-primary {
+  flex-shrink: 0;
+}
+
+/* Workshop detail page */
+.workshop-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 2rem;
+  align-items: center;
+}
+
+.workshop-hero-media {
+  margin: 0;
+  position: relative;
+}
+
+.workshop-hero-media img {
+  width: 100%;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: 78% 12%;
+}
+
+.workshop-hero-media figcaption {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  margin: 0;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(251, 250, 247, 0.92);
+  color: var(--forest-deep);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.workshop-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.75fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.workshop-aside {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 1.5rem 1.4rem 1.6rem;
+  box-shadow: 0 14px 40px rgba(20, 53, 40, 0.07);
+  position: sticky;
+  top: 96px;
+}
+
+.workshop-aside h2 {
+  font-size: 1.55rem;
+  margin-bottom: 1rem;
+}
+
+.workshop-meta {
+  margin: 0 0 1.35rem;
+}
+
+.workshop-meta > div {
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.workshop-meta > div:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.workshop-meta dt {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--forest);
+  margin-bottom: 0.25rem;
+}
+
+.workshop-meta dd {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.workshop-meta dd span {
+  display: inline-block;
+  margin-top: 0.15rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.workshop-aside .btn {
+  width: 100%;
+}
+
+.workshop-aside-note {
+  margin: 0.9rem 0 0;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+
+.learn-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.learn-grid li {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  background: var(--white);
+  border: 1px solid rgba(216, 224, 218, 0.9);
+  border-radius: 14px;
+  padding: 0.95rem 1rem;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.learn-grid li span {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--forest-soft);
+  color: var(--forest);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.workshop-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  text-align: center;
+}
+
+.workshop-pillars p {
+  margin: 0;
+  padding: 1.1rem 1rem;
+  border-radius: 14px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  color: var(--forest-deep);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 960px) {
+  .workshop-banner-inner {
+    align-items: stretch;
+  }
+
+  .workshop-banner .btn-primary {
+    width: 100%;
+  }
+
+  .workshop-hero-grid,
+  .workshop-layout,
+  .learn-grid,
+  .workshop-pillars {
+    grid-template-columns: 1fr;
+  }
+
+  .workshop-aside {
+    position: static;
+  }
+
+  .workshop-hero-media img {
+    object-position: 65% 18%;
+  }
+}
+
 /* Links & buttons: slightly lighter on hover */
 @media (hover: hover) and (pointer: fine) {
   a[href],

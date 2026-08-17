@@ -106,6 +106,17 @@
     }
   }
 
+  // Prefill contact interest from ?interest=
+  const interestSelect = document.querySelector("#interest");
+  if (interestSelect) {
+    const params = new URLSearchParams(window.location.search);
+    const interest = params.get("interest");
+    if (interest) {
+      const match = Array.from(interestSelect.options).find((opt) => opt.value === interest);
+      if (match) interestSelect.value = interest;
+    }
+  }
+
   // Lead capture forms → mailto fallback (swap to HubSpot/Formspree later)
   document.querySelectorAll("[data-lead-form]").forEach((form) => {
     form.addEventListener("submit", (event) => {
