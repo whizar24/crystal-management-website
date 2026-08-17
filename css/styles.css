@@ -18,6 +18,7 @@
   --font-display: "Cormorant Garamond", "Times New Roman", serif;
   --font-body: "Figtree", system-ui, sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --header-h: 92px;
 }
 
 *,
@@ -103,7 +104,7 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  min-height: 76px;
+  min-height: var(--header-h);
 }
 
 .logo {
@@ -111,12 +112,13 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   align-items: center;
   gap: 0.75rem;
   min-width: 0;
+  flex: 0 1 auto;
 }
 
 .logo-full {
-  height: 52px;
+  height: 74px;
   width: auto;
-  max-width: min(280px, 42vw);
+  max-width: min(420px, 48vw);
   object-fit: contain;
   object-position: left center;
   display: block;
@@ -257,9 +259,9 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 /* Hero — cinematic full-bleed with light sage-cream veil */
 .hero {
   position: relative;
-  min-height: calc(100svh - 76px);
-  height: calc(100svh - 76px);
-  max-height: calc(100svh - 76px);
+  min-height: calc(100svh - var(--header-h));
+  height: calc(100svh - var(--header-h));
+  max-height: calc(100svh - var(--header-h));
   display: grid;
   grid-template-rows: 1fr auto;
   align-items: stretch;
@@ -586,8 +588,8 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   }
 
   .logo-full {
-    height: 40px;
-    max-width: min(200px, 48vw);
+    height: 56px;
+    max-width: min(260px, 58vw);
   }
 
   .logo-text span {
@@ -1177,7 +1179,7 @@ textarea { min-height: 140px; resize: vertical; }
     position: absolute;
     left: 0;
     right: 0;
-    top: 76px;
+    top: var(--header-h);
     background: var(--bg);
     border-bottom: 1px solid var(--line);
     padding: 1rem 1.25rem 1.25rem;
@@ -1189,7 +1191,7 @@ textarea { min-height: 140px; resize: vertical; }
     position: absolute;
     left: 1.25rem;
     right: 1.25rem;
-    top: calc(76px + 14.5rem);
+    top: calc(var(--header-h) + 14.5rem);
   }
 
   .site-header.is-menu-open {
