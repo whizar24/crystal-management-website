@@ -18,7 +18,7 @@
   --font-display: "Cormorant Garamond", "Times New Roman", serif;
   --font-body: "Figtree", system-ui, sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --header-h: 92px;
+  --header-h: 96px;
 }
 
 *,
@@ -116,9 +116,9 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 }
 
 .logo-full {
-  height: 74px;
+  height: 78px;
   width: auto;
-  max-width: min(420px, 48vw);
+  max-width: min(460px, 52vw);
   object-fit: contain;
   object-position: left center;
   display: block;
@@ -534,7 +534,7 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   .hero {
     height: auto;
     max-height: none;
-    min-height: calc(100svh - 64px);
+    min-height: calc(100svh - var(--header-h));
   }
 
   .hero-bg-img {
@@ -588,8 +588,8 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   }
 
   .logo-full {
-    height: 56px;
-    max-width: min(260px, 58vw);
+    height: 58px;
+    max-width: min(280px, 62vw);
   }
 
   .logo-text span {
@@ -1419,7 +1419,7 @@ textarea { min-height: 140px; resize: vertical; }
   padding: 1.5rem 1.4rem 1.6rem;
   box-shadow: 0 14px 40px rgba(20, 53, 40, 0.07);
   position: sticky;
-  top: 96px;
+  top: calc(var(--header-h) + 12px);
 }
 
 .workshop-aside h2 {
