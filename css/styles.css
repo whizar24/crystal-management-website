@@ -1208,7 +1208,107 @@ textarea { min-height: 140px; resize: vertical; }
   }
 }
 
-/* Workshop promo banner (homepage) */
+/* Workshop floating announcement */
+.workshop-float {
+  position: fixed;
+  right: 1.35rem;
+  bottom: 1.35rem;
+  z-index: 95;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  width: min(100% - 2rem, 360px);
+  padding: 1rem 1.1rem 1.05rem;
+  border-radius: 18px;
+  background: #fbfaf7;
+  color: var(--ink);
+  border: 1px solid rgba(30, 77, 58, 0.14);
+  box-shadow:
+    0 18px 50px rgba(20, 53, 40, 0.18),
+    0 2px 0 rgba(255, 255, 255, 0.8) inset;
+  text-decoration: none;
+  transform: translateY(0);
+  animation: workshopFloatIn 0.55s var(--ease) both;
+}
+
+.workshop-float:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+  box-shadow:
+    0 22px 56px rgba(20, 53, 40, 0.22),
+    0 2px 0 rgba(255, 255, 255, 0.8) inset;
+}
+
+.workshop-float-badge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.6rem;
+  padding: 0.28rem 0.5rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--white);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 18px rgba(184, 90, 61, 0.35);
+  animation: workshopBadgePulse 2.4s ease-in-out infinite;
+}
+
+.workshop-float-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  min-width: 0;
+}
+
+.workshop-float-body strong {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.workshop-float-meta {
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+  line-height: 1.35;
+}
+
+.workshop-float-cta {
+  margin-top: 0.2rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+@keyframes workshopFloatIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes workshopBadgePulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 8px 18px rgba(184, 90, 61, 0.35); }
+  50% { transform: scale(1.05); box-shadow: 0 10px 22px rgba(184, 90, 61, 0.45); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workshop-float,
+  .workshop-float-badge {
+    animation: none;
+  }
+}
+
+/* Workshop promo banner (legacy strip — unused on home) */
 .workshop-banner {
   background:
     linear-gradient(105deg, rgba(20, 53, 40, 0.96), rgba(30, 77, 58, 0.9)),
@@ -1422,6 +1522,13 @@ textarea { min-height: 140px; resize: vertical; }
 }
 
 @media (max-width: 960px) {
+  .workshop-float {
+    left: 1rem;
+    right: 1rem;
+    bottom: 5.75rem;
+    width: auto;
+  }
+
   .workshop-banner-inner {
     align-items: stretch;
   }
@@ -1462,5 +1569,9 @@ textarea { min-height: 140px; resize: vertical; }
   input[type="submit"]:hover,
   input[type="button"]:hover {
     opacity: 0.72;
+  }
+
+  a.workshop-float:hover {
+    opacity: 1;
   }
 }
