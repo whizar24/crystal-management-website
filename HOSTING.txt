@@ -1,0 +1,64 @@
+Crystal Management Services — Hosting handover
+================================================
+
+Contents of this package
+------------------------
+Static website files ready for upload to public_html (or the domain web root).
+
+Included pages
+- index.html
+- consultancy.html
+- training.html
+- workshop.html
+- about.html
+- contact.html
+- privacy.html
+- css/, js/, assets/, forms/
+
+Upload instructions (cPanel)
+----------------------------
+1. Back up the current live site / WordPress files first.
+2. Upload all files from this package into public_html
+   (or upload into a staging folder, test, then move).
+3. Confirm these work after upload:
+   - Home page loads with images
+   - Workshop floating notice links to workshop.html
+   - Contact form submits successfully
+   - Phone and email links work on mobile
+
+Form / lead capture
+-------------------
+The contact form posts to:
+  forms/send-enquiry.php
+
+That script emails enquiries to:
+  schola@cteprojects.org.uk
+
+Requirements:
+- PHP enabled on hosting (standard on cPanel)
+- Server mail() allowed, or configure SMTP if the host requires it
+
+If PHP mail is blocked by the host, use one of these instead:
+1) Formspree / Getform / Basin
+   - Create a form endpoint
+   - Point the contact form action to that endpoint
+2) HubSpot free forms or Brevo
+   - Embed or connect the form for CRM storage
+3) Eventbrite (workshop tickets)
+   - Replace workshop “Register” buttons with the live Eventbrite URL
+   - Keep the contact form for consultancy/training enquiries
+
+Recommended launch checklist
+----------------------------
+- [ ] Add live Eventbrite URL for workshop registration
+- [ ] Add Calendly/Cal.com link for discovery calls (optional)
+- [ ] Add LinkedIn / Instagram URLs when ready
+- [ ] Replace anonymised outcome quotes with approved client testimonials when available
+- [ ] Connect Google Analytics / Search Console
+- [ ] Test form delivery to schola@cteprojects.org.uk
+
+Brand contact details used on the site
+--------------------------------------
+Phone: 07949 547251
+Email: schola@cteprojects.org.uk
+Domain: www.crystalmgmt.co.uk

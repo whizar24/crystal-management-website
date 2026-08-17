@@ -1,10 +1,11 @@
-/* Crystal Management Consulting — site interactions */
+/* Crystal Management Services — site interactions */
 
 (function () {
   const header = document.querySelector(".site-header");
   const navWrap = document.querySelector(".nav-wrap");
   const toggle = document.querySelector(".menu-toggle");
   const yearEls = document.querySelectorAll("[data-year]");
+  const enquiryEndpoint = "forms/send-enquiry.php";
 
   yearEls.forEach((el) => {
     el.textContent = String(new Date().getFullYear());
@@ -34,7 +35,6 @@
     });
   }
 
-  // Reveal on scroll
   const reveals = document.querySelectorAll(".reveal");
   if (reveals.length && "IntersectionObserver" in window) {
     const io = new IntersectionObserver(
@@ -53,7 +53,6 @@
     reveals.forEach((el) => el.classList.add("is-visible"));
   }
 
-  // Cinematic hero — subtle parallax on background
   const hero = document.querySelector("[data-hero]");
   const heroBg = document.querySelector(".hero-bg");
   const motionOk = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
@@ -61,11 +60,10 @@
   if (hero && heroBg && motionOk) {
     let raf = 0;
     let targetX = 0;
-    let targetY = 0;
 
     const render = () => {
       heroBg.style.setProperty("--hx", `${targetX}px`);
-      heroBg.style.setProperty("--hy", `${targetY}px`);
+      heroBg.style.setProperty("--hy", "0px");
       raf = 0;
     };
 
@@ -74,9 +72,7 @@
       (event) => {
         const rect = hero.getBoundingClientRect();
         const px = (event.clientX - rect.left) / rect.width - 0.5;
-        const py = (event.clientY - rect.top) / rect.height - 0.5;
         targetX = px * -10;
-        targetY = 0; // keep Y locked — vertical shift caused a flashing seam under the header
         if (!raf) raf = requestAnimationFrame(render);
       },
       { passive: true }
@@ -84,12 +80,10 @@
 
     hero.addEventListener("pointerleave", () => {
       targetX = 0;
-      targetY = 0;
       if (!raf) raf = requestAnimationFrame(render);
     });
   }
 
-  // Sticky mobile CTA only after hero leaves view (avoids duplicate button)
   const mobileCta = document.querySelector(".mobile-cta");
   const heroEl = document.querySelector("[data-hero]") || document.querySelector(".hero, .page-hero");
   if (mobileCta) {
@@ -106,7 +100,6 @@
     }
   }
 
-  // Prefill contact interest from ?interest=
   const interestSelect = document.querySelector("#interest");
   if (interestSelect) {
     const params = new URLSearchParams(window.location.search);
@@ -117,30 +110,58 @@
     }
   }
 
-  // Lead capture forms → mailto fallback (swap to HubSpot/Formspree later)
+  const openMailtoFallback = (payload) => {
+    const subject = encodeURIComponent(`Website enquiry — ${payload.interest || "General"}`);
+    const body = encodeURIComponent(
+      `Name: ${payload.name}\nEmail: ${payload.email}\nPhone: ${payload.phone}\nInterest: ${payload.interest}\n\nMessage:\n${payload.message}`
+    );
+    window.location.href = `mailto:schola@cteprojects.org.uk?subject=${subject}&body=${body}`;
+  };
+
   document.querySelectorAll("[data-lead-form]").forEach((form) => {
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
       const data = new FormData(form);
-      const name = String(data.get("name") || "").trim();
-      const email = String(data.get("email") || "").trim();
-      const phone = String(data.get("phone") || "").trim();
-      const interest = String(data.get("interest") || "").trim();
-      const message = String(data.get("message") || "").trim();
+      const payload = {
+        name: String(data.get("name") || "").trim(),
+        email: String(data.get("email") || "").trim(),
+        phone: String(data.get("phone") || "").trim(),
+        interest: String(data.get("interest") || "").trim(),
+        message: String(data.get("message") || "").trim(),
+      };
 
-      if (!name || !email) return;
-
-      const subject = encodeURIComponent(`Website enquiry — ${interest || "General"}`);
-      const body = encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nInterest: ${interest}\n\nMessage:\n${message}`
-      );
+      if (!payload.name || !payload.email) return;
 
       const success = form.querySelector(".form-success");
-      if (success) success.classList.add("is-visible");
+      const submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
 
-      // Opens her email client until CRM/form endpoint is connected
-      window.location.href = `mailto:schola@cteprojects.org.uk?subject=${subject}&body=${body}`;
-      form.reset();
+      try {
+        const response = await fetch(enquiryEndpoint, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: data,
+        });
+
+        if (!response.ok) throw new Error("Enquiry endpoint unavailable");
+
+        const result = await response.json().catch(() => ({}));
+        if (!result.ok) throw new Error("Enquiry rejected");
+
+        if (success) {
+          success.textContent = "Thank you. Your enquiry has been sent. We will respond shortly.";
+          success.classList.add("is-visible");
+        }
+        form.reset();
+      } catch (error) {
+        openMailtoFallback(payload);
+        if (success) {
+          success.textContent = "Your email app should open with the enquiry ready to send.";
+          success.classList.add("is-visible");
+        }
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
     });
   });
 })();

@@ -1,4 +1,4 @@
-/* Crystal Management Consulting — design system */
+/* Crystal Management Services — design system */
 :root {
   --forest: #1e4d3a;
   --forest-deep: #143528;
@@ -111,6 +111,15 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   align-items: center;
   gap: 0.75rem;
   min-width: 0;
+}
+
+.logo-full {
+  height: 52px;
+  width: auto;
+  max-width: min(280px, 42vw);
+  object-fit: contain;
+  object-position: left center;
+  display: block;
 }
 
 .logo-mark {
@@ -239,6 +248,10 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 1.5rem;
+}
+
+.btn-group-center {
+  justify-content: center;
 }
 
 /* Hero — cinematic full-bleed with light sage-cream veil */
@@ -402,18 +415,34 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   align-items: center;
 }
 
-.hero-avatars img {
+.hero-avatars .avatar-initials,
+.avatar-initials {
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  object-fit: cover;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--forest-deep);
+  background: var(--forest-soft);
   border: 2px solid #fbfaf7;
   margin-left: -10px;
-  box-shadow: 0 6px 16px rgba(20, 53, 40, 0.14);
+  box-shadow: 0 6px 16px rgba(20, 53, 40, 0.12);
 }
 
-.hero-avatars img:first-child {
+.hero-avatars .avatar-initials:first-child,
+.hero-avatars > :first-child {
   margin-left: 0;
+}
+
+.quote-person .avatar-initials {
+  margin-left: 0;
+  width: 44px;
+  height: 44px;
+  font-size: 0.72rem;
 }
 
 .hero-proof-copy {
@@ -554,6 +583,11 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   .trust-marquee-track {
     gap: 1.6rem;
     padding: 0.75rem 1rem;
+  }
+
+  .logo-full {
+    height: 40px;
+    max-width: min(200px, 48vw);
   }
 
   .logo-text span {
@@ -832,13 +866,6 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   gap: 0.8rem;
 }
 
-.quote-person img {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
 .quote-person strong {
   display: block;
   font-size: 0.95rem;
@@ -847,6 +874,29 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 .quote-person span {
   font-size: 0.82rem;
   color: var(--ink-soft);
+}
+
+.media-frame {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.form-title {
+  font-size: 1.6rem;
+}
+
+.contact-item-text {
+  margin: 0;
+}
+
+.prose-narrow {
+  max-width: 760px;
+}
+
+.footer-bottom-solo {
+  border: 0;
+  padding-top: 0;
 }
 
 /* CTA band */
@@ -1046,37 +1096,6 @@ textarea { min-height: 140px; resize: vertical; }
 }
 
 .footer-links li { margin-bottom: 0.45rem; }
-
-.social-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-  margin-top: 1.15rem;
-}
-
-.social-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: #fbfaf7;
-  color: var(--forest-deep);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.2s;
-}
-
-.social-link:hover {
-  background: #fbfaf7;
-  color: var(--forest-deep);
-}
-
-.social-link svg {
-  width: 18px;
-  height: 18px;
-  fill: currentColor;
-}
 
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
@@ -1336,8 +1355,8 @@ textarea { min-height: 140px; resize: vertical; }
 }
 
 @keyframes workshopBadgePulse {
-  0%, 100% { transform: scale(1); box-shadow: 0 10px 22px rgba(184, 90, 61, 0.4); }
-  50% { transform: scale(1.07); box-shadow: 0 12px 26px rgba(184, 90, 61, 0.55); }
+  0%, 100% { box-shadow: 0 10px 22px rgba(184, 90, 61, 0.4); }
+  50% { box-shadow: 0 12px 28px rgba(184, 90, 61, 0.55); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1345,55 +1364,6 @@ textarea { min-height: 140px; resize: vertical; }
   .workshop-float-badge {
     animation: none;
   }
-}
-
-/* Workshop promo banner (legacy strip — unused on home) */
-.workshop-banner {
-  background:
-    linear-gradient(105deg, rgba(20, 53, 40, 0.96), rgba(30, 77, 58, 0.9)),
-    var(--forest-deep);
-  color: #f7f4ef;
-  padding: 1.35rem 0;
-  border-block: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.workshop-banner-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.25rem 2rem;
-  flex-wrap: wrap;
-}
-
-.workshop-banner-copy {
-  flex: 1 1 18rem;
-  min-width: 0;
-}
-
-.workshop-banner-eyebrow {
-  margin: 0 0 0.35rem;
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #e8c4b4;
-}
-
-.workshop-banner h2 {
-  margin: 0 0 0.4rem;
-  color: #fbfaf7;
-  font-size: clamp(1.55rem, 2.8vw, 2rem);
-}
-
-.workshop-banner p {
-  margin: 0;
-  color: rgba(247, 244, 239, 0.86);
-  font-size: 0.98rem;
-  max-width: 40rem;
-}
-
-.workshop-banner .btn-primary {
-  flex-shrink: 0;
 }
 
 /* Workshop detail page */
@@ -1566,14 +1536,6 @@ textarea { min-height: 140px; resize: vertical; }
     right: 1rem;
     bottom: 5.75rem;
     width: auto;
-  }
-
-  .workshop-banner-inner {
-    align-items: stretch;
-  }
-
-  .workshop-banner .btn-primary {
-    width: 100%;
   }
 
   .workshop-hero-grid,
