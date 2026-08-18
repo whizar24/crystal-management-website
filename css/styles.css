@@ -88,15 +88,17 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(251, 250, 247, 0.82);
+  background: rgba(246, 244, 239, 0.94);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  border-bottom: 1px solid rgba(30, 77, 58, 0.14);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease), background 0.3s var(--ease);
 }
 
 .site-header.is-scrolled {
-  border-bottom-color: var(--line);
-  box-shadow: 0 8px 30px rgba(20, 53, 40, 0.06);
+  background: rgba(246, 244, 239, 0.98);
+  border-bottom-color: rgba(30, 77, 58, 0.18);
+  box-shadow: 0 8px 30px rgba(20, 53, 40, 0.08);
 }
 
 .nav-wrap {
@@ -161,12 +163,17 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 .nav-links a {
   font-size: 0.92rem;
   font-weight: 560;
-  color: var(--ink-soft);
+  color: var(--ink);
   transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--forest);
 }
 
 .nav-links a.is-active {
   color: var(--forest);
+  font-weight: 700;
 }
 
 .nav-cta {
@@ -221,13 +228,14 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 
 .btn-secondary {
   background: transparent;
-  color: var(--forest);
+  color: var(--forest-deep);
   border-color: var(--forest);
 }
 
 .btn-secondary:hover {
-  background: transparent;
-  color: var(--forest);
+  background: var(--forest-soft);
+  color: var(--forest-deep);
+  border-color: var(--forest-deep);
 }
 
 .btn-light {
@@ -301,20 +309,21 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 .hero-bg-overlay {
   position: absolute;
   inset: 0;
-  /* Soft cream + sage mist — light, complements forest green */
+  /* Readable left veil; photo stays clear on the right for depth */
   background:
     linear-gradient(
       105deg,
-      rgba(251, 250, 247, 0.96) 0%,
-      rgba(246, 244, 239, 0.9) 36%,
-      rgba(232, 240, 235, 0.58) 62%,
-      rgba(232, 240, 235, 0.2) 100%
+      rgba(246, 244, 239, 0.92) 0%,
+      rgba(246, 244, 239, 0.78) 28%,
+      rgba(232, 240, 235, 0.42) 52%,
+      rgba(20, 53, 40, 0.12) 78%,
+      rgba(20, 53, 40, 0.06) 100%
     ),
     linear-gradient(
       180deg,
-      rgba(251, 250, 247, 0.28) 0%,
-      transparent 42%,
-      rgba(239, 235, 227, 0.45) 100%
+      rgba(246, 244, 239, 0.22) 0%,
+      transparent 38%,
+      rgba(20, 53, 40, 0.18) 100%
     );
   pointer-events: none;
 }
@@ -366,11 +375,11 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 }
 
 .hero-lead {
-  color: var(--ink-soft);
+  color: var(--ink);
   font-family: var(--font-body);
   font-size: clamp(1.05rem, 1.7vw, 1.2rem);
   font-style: normal;
-  font-weight: 700;
+  font-weight: 650;
   max-width: 32rem;
   margin: 0;
   line-height: 1.55;
@@ -392,16 +401,17 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 }
 
 .btn-hero-ghost {
-  background: rgba(251, 250, 247, 0.55);
-  color: var(--forest);
-  border-color: rgba(30, 77, 58, 0.35);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--forest-deep);
+  border-color: var(--forest);
   backdrop-filter: blur(6px);
+  box-shadow: 0 8px 22px rgba(20, 53, 40, 0.08);
 }
 
 .btn-hero-ghost:hover {
-  background: rgba(251, 250, 247, 0.55);
-  color: var(--forest);
-  border-color: rgba(30, 77, 58, 0.35);
+  background: var(--forest);
+  color: var(--white);
+  border-color: var(--forest);
 }
 
 .hero-proof {
@@ -471,8 +481,8 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   position: relative;
   z-index: 2;
   overflow: hidden;
-  border-top: 1px solid rgba(30, 77, 58, 0.12);
-  background: rgba(251, 250, 247, 0.78);
+  border-top: 1px solid rgba(30, 77, 58, 0.2);
+  background: rgba(232, 240, 235, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
