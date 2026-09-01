@@ -32,7 +32,7 @@ The contact form posts to:
   forms/send-enquiry.php
 
 That script emails enquiries to:
-  schola@cteprojects.org.uk
+  admin@crystalmanagementservices.com
 
 Requirements:
 - PHP enabled on hosting (standard on cPanel)
@@ -55,10 +55,10 @@ Recommended launch checklist
 - [ ] Add LinkedIn / Instagram URLs when ready
 - [ ] Replace anonymised outcome quotes with approved client testimonials when available
 - [ ] Connect Google Analytics / Search Console
-- [ ] Test form delivery to schola@cteprojects.org.uk
+- [ ] Test form delivery to admin@crystalmanagementservices.com
 
 Brand contact details used on the site
 --------------------------------------
-Phone: 07949 547251
-Email: schola@cteprojects.org.uk
+Phone: +44 7954 7251
+Email: admin@crystalmanagementservices.com
 Domain: www.crystalmgmt.co.uk
