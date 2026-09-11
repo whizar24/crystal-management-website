@@ -618,7 +618,7 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 
 /* Sections */
 .section {
-  padding: 5rem 0;
+  padding: 4.25rem 0;
 }
 
 .section-head {
@@ -646,15 +646,24 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   margin-inline: auto;
 }
 
-.section-head > p,
+.section-head > p:not(.eyebrow) {
+  margin-top: 0.85rem;
+  max-width: 40rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
 .page-hero .container > p:not(.eyebrow),
-.about-strip > div > h2 + p,
-.cta-band .container > p:not(.cta-meta) {
+.page-hero-copy > p:not(.eyebrow),
+.about-strip > div > h2 + p {
   font-weight: 700;
   color: var(--ink);
 }
 
 .cta-band .container > p:not(.cta-meta) {
+  font-weight: 700;
   color: rgba(255, 255, 255, 0.95);
 }
 
@@ -965,18 +974,63 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 
 /* Page hero (inner) */
 .page-hero {
-  padding: 4.5rem 0 3rem;
+  padding: 3.25rem 0 2.75rem;
   background:
     linear-gradient(180deg, var(--forest-soft), var(--bg));
 }
 
-.page-hero p {
-  max-width: 40rem;
+.page-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(1.35rem, 3vw, 2.25rem);
+  align-items: center;
+}
+
+.page-hero-copy {
+  max-width: 34rem;
+}
+
+.page-hero-copy h1 {
+  margin-bottom: 0.85rem;
+}
+
+.page-hero p,
+.page-hero-copy p {
+  max-width: 36rem;
   font-size: 1.08rem;
 }
 
-.page-hero .container > p:not(.eyebrow) {
+.page-hero .container > p:not(.eyebrow),
+.page-hero-copy > p:not(.eyebrow) {
   color: var(--ink);
+}
+
+.page-hero-media {
+  margin: 0;
+  position: relative;
+}
+
+.page-hero-media img {
+  width: 100%;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+.page-hero-simple .container {
+  max-width: 42rem;
+}
+
+.page-hero-simple {
+  padding-bottom: 2rem;
+}
+
+.section-intro {
+  max-width: 40rem;
+  text-align: left;
 }
 
 /* Feature blocks */
@@ -1383,9 +1437,10 @@ textarea { min-height: 140px; resize: vertical; }
 
 /* Workshop detail page */
 .workshop-hero-grid {
+  /* inherits / mirrors .page-hero-grid */
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  gap: 2rem;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(1.5rem, 4vw, 2.75rem);
   align-items: center;
 }
 
@@ -1401,6 +1456,7 @@ textarea { min-height: 140px; resize: vertical; }
   aspect-ratio: 4 / 3;
   object-fit: cover;
   object-position: 78% 12%;
+  display: block;
 }
 
 .workshop-hero-media figcaption {
@@ -1546,11 +1602,20 @@ textarea { min-height: 140px; resize: vertical; }
 }
 
 @media (max-width: 960px) {
+  .page-hero-grid,
   .workshop-hero-grid,
   .workshop-layout,
   .learn-grid,
   .workshop-pillars {
     grid-template-columns: 1fr;
+  }
+
+  .page-hero {
+    padding: 2.75rem 0 2.25rem;
+  }
+
+  .page-hero-copy {
+    max-width: none;
   }
 
   .workshop-aside {
