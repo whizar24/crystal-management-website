@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
   exit;
 }
 
-$to = 'admin@crystalmanagementservices.com';
+$to = 'schola@cteprojects.org.uk';
 $name = trim((string)($_POST['name'] ?? ''));
 $email = trim((string)($_POST['email'] ?? ''));
 $phone = trim((string)($_POST['phone'] ?? ''));

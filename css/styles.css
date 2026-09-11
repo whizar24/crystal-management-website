@@ -1381,144 +1381,6 @@ textarea { min-height: 140px; resize: vertical; }
   }
 }
 
-/* Workshop floating announcement */
-.workshop-float {
-  position: fixed;
-  right: 1.25rem;
-  bottom: 1.25rem;
-  z-index: 95;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.95rem;
-  width: min(100% - 1.75rem, 400px);
-  padding: 1.15rem 1.2rem 1.2rem 1.3rem;
-  border-radius: 20px;
-  background:
-    linear-gradient(165deg, #fffdf9 0%, #f7f3eb 100%);
-  color: var(--ink);
-  border: 1px solid rgba(184, 90, 61, 0.28);
-  box-shadow:
-    0 0 0 4px rgba(184, 90, 61, 0.1),
-    0 22px 55px rgba(20, 53, 40, 0.22);
-  text-decoration: none;
-  transform: translateY(0);
-  animation: workshopFloatIn 0.55s var(--ease) both;
-}
-
-.workshop-float::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 5px;
-  border-radius: 20px 0 0 20px;
-  background: linear-gradient(180deg, var(--accent), #d4785a);
-  pointer-events: none;
-}
-
-.workshop-float:hover {
-  opacity: 1;
-  transform: translateY(-4px);
-  border-color: rgba(184, 90, 61, 0.45);
-  box-shadow:
-    0 0 0 5px rgba(184, 90, 61, 0.14),
-    0 28px 60px rgba(20, 53, 40, 0.26);
-}
-
-.workshop-float-badge {
-  position: relative;
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  align-self: start;
-  min-width: 3.15rem;
-  height: 3.15rem;
-  padding: 0.35rem;
-  border-radius: 50%;
-  background: var(--accent);
-  color: var(--white);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  box-shadow: 0 10px 22px rgba(184, 90, 61, 0.4);
-  animation: workshopBadgePulse 2.2s ease-in-out infinite;
-}
-
-.workshop-float-body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.28rem;
-  min-width: 0;
-  padding-right: 0.15rem;
-}
-
-.workshop-float-kicker {
-  margin: 0;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.workshop-float-body strong {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 600;
-  line-height: 1.15;
-  color: var(--ink);
-}
-
-.workshop-float-meta {
-  font-size: 0.9rem;
-  color: var(--ink-soft);
-  line-height: 1.4;
-  font-weight: 560;
-}
-
-.workshop-float-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  align-self: start;
-  margin-top: 0.55rem;
-  padding: 0.55rem 0.9rem;
-  border-radius: 999px;
-  background: var(--forest);
-  color: #fbfaf7;
-  font-size: 0.86rem;
-  font-weight: 700;
-  box-shadow: 0 8px 18px rgba(20, 53, 40, 0.18);
-}
-
-.workshop-float:hover .workshop-float-cta {
-  background: var(--forest-deep);
-}
-
-@keyframes workshopFloatIn {
-  from {
-    opacity: 0;
-    transform: translateY(18px) scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes workshopBadgePulse {
-  0%, 100% { box-shadow: 0 10px 22px rgba(184, 90, 61, 0.4); }
-  50% { box-shadow: 0 12px 28px rgba(184, 90, 61, 0.55); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .workshop-float,
-  .workshop-float-badge {
-    animation: none;
-  }
-}
-
 /* Workshop detail page */
 .workshop-hero-grid {
   display: grid;
@@ -1684,13 +1546,6 @@ textarea { min-height: 140px; resize: vertical; }
 }
 
 @media (max-width: 960px) {
-  .workshop-float {
-    left: 1rem;
-    right: 1rem;
-    bottom: 5.75rem;
-    width: auto;
-  }
-
   .workshop-hero-grid,
   .workshop-layout,
   .learn-grid,
@@ -1723,9 +1578,5 @@ textarea { min-height: 140px; resize: vertical; }
   input[type="submit"]:hover,
   input[type="button"]:hover {
     opacity: 0.72;
-  }
-
-  a.workshop-float:hover {
-    opacity: 1;
   }
 }

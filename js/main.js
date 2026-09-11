@@ -115,7 +115,7 @@
     const body = encodeURIComponent(
       `Name: ${payload.name}\nEmail: ${payload.email}\nPhone: ${payload.phone}\nInterest: ${payload.interest}\n\nMessage:\n${payload.message}`
     );
-    window.location.href = `mailto:admin@crystalmanagementservices.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:schola@cteprojects.org.uk?subject=${subject}&body=${body}`;
   };
 
   document.querySelectorAll("[data-lead-form]").forEach((form) => {

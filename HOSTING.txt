@@ -22,7 +22,6 @@ Upload instructions (cPanel)
    (or upload into a staging folder, test, then move).
 3. Confirm these work after upload:
    - Home page loads with images
-   - Workshop floating notice links to workshop.html
    - Contact form submits successfully
    - Phone and email links work on mobile
 
@@ -32,7 +31,7 @@ The contact form posts to:
   forms/send-enquiry.php
 
 That script emails enquiries to:
-  admin@crystalmanagementservices.com
+  schola@cteprojects.org.uk
 
 Requirements:
 - PHP enabled on hosting (standard on cPanel)
@@ -55,10 +54,10 @@ Recommended launch checklist
 - [ ] Add LinkedIn / Instagram URLs when ready
 - [ ] Replace anonymised outcome quotes with approved client testimonials when available
 - [ ] Connect Google Analytics / Search Console
-- [ ] Test form delivery to admin@crystalmanagementservices.com
+- [ ] Test form delivery to schola@cteprojects.org.uk
 
 Brand contact details used on the site
 --------------------------------------
-Phone: +44 7954 7251
-Email: admin@crystalmanagementservices.com
+Phone / WhatsApp: +44 7949 547251
+Email: schola@cteprojects.org.uk
 Domain: www.crystalmgmt.co.uk
